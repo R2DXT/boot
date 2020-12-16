@@ -67,8 +67,10 @@ mkdir /usr/lib/dracut/modules.d/01test
 ```
 качаем файлы примера и кладем в дир
 ```sh
-yum install wget -y 
-
+yum install git -y 
+git clone https://github.com/R2DXT/boot
+cd boot 
+cp mod* te* //usr/lib/dracut/modules.d/01test
 ```
 пересобираем initrd и перезагружаемся
 ```sh

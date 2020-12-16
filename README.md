@@ -26,18 +26,7 @@ vgrename VolGroup00 VChangeName
 ```
 Вносим с помощью изменения в /boot/grub2/grub.cfg, /etc/default/grub, /etc/fstab где заменяем "VolGroup00" на "VChangeName", проверяем и пересоздаем initrd
 ```sh
-cat /boot/grub2/grub.cfg | grep VChangeName
-        linux16 /vmlinuz-3.10.0-862.2.3.el7.x86_64 root=/dev/mapper/VolGroup00-LogVol00 ro n
-o_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop 
-crashkernel=auto rd.lvm.lv=VChangeName/LogVol00 rd.lvm.lv=VChangeName/LogVol01 rhgb quiet   
-[root@kernel-update vagrant]# cat /boot/grub2/grub.cfg /etc/default/grub| grep VChangeName  
-        linux16 /vmlinuz-3.10.0-862.2.3.el7.x86_64 root=/dev/mapper/VolGroup00-LogVol00 ro n
-o_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop 
-crashkernel=auto rd.lvm.lv=VChangeName/LogVol00 rd.lvm.lv=VChangeName/LogVol01 rhgb quiet   
-GRUB_CMDLINE_LINUX="no_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdev
-name=0 elevator=noop crashkernel=auto rd.lvm.lv=VChangeName/LogVol00 rd.lvm.lv=VChangeName/L
-ogVol01 rhgb quiet"
-[root@kernel-update vagrant]# cat /boot/grub2/grub.cfg /etc/default/grub /etc/fstab | grep V
+cat /boot/grub2/grub.cfg /etc/default/grub /etc/fstab | grep V
 ChangeName
         linux16 /vmlinuz-3.10.0-862.2.3.el7.x86_64 root=/dev/mapper/VolGroup00-LogVol00 ro n
 o_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop 
@@ -70,7 +59,7 @@ mkdir /usr/lib/dracut/modules.d/01test
 yum install git -y 
 git clone https://github.com/R2DXT/boot
 cd boot 
-cp mod* te* //usr/lib/dracut/modules.d/01test
+cp mod* te* /usr/lib/dracut/modules.d/01test
 ```
 пересобираем initrd и перезагружаемся
 ```sh
